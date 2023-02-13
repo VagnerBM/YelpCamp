@@ -6,7 +6,13 @@ const { cloudinary } = require('../cloudinary');
 
 module.exports.index = async (req, res) => {
     const campgrounds = await Campground.find({});
-    res.render('campgrounds/index', { campgrounds })
+    const paginationLimit = 20;
+    const pageCount = Math.ceil(campgrounds.length / paginationLimit);
+    const pageControler = {};
+    pageControler.currentPage = parseInt(req.query.page) || 1;
+    pageControler.firstCamp = (pageControler.currentPage - 1) * 20 + 1;
+    pageControler.lastCamp = pageControler.firstCamp + 20;
+    res.render('campgrounds/index', { campgrounds, pageCount, pageControler })
 }
 
 module.exports.renderNewForm = (req, res) => {
