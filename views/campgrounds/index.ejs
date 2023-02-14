@@ -2,16 +2,16 @@
 <div id="cluster-map"></div>
 <h1>All Campgrounds</h1>
 
-<% for (let i = pageControler.firstCamp; (i <= pageControler.lastCamp) && (i < campgrounds.length); i++) { %>
-<% const campground = campgrounds[i]; %>
+<% const campgroundsPage = campgrounds.slice(pagination.firstCamp, (pagination.lastCamp + 1)); %>
+<% for (let campground of campgroundsPage) { %>
 <div class="card mb-3">
     <div class="row">
         <div class="col-md-4">
             <% if (campground.images.length) { %>
-            <img class="img-fluid" alt="" src="<%= campground.images[0].url %> " crossorigin>
-            <% }  else { %>
+            <img class="img-fluid" alt="" src=" <%= campground.images[0].url %> " crossorigin>
+            <% } else { %>
             <img class="img-fluid" alt=""
-                src="https://res.cloudinary.com/dvty6r2wv/image/upload/v1674733835/YelpCamp/dtxjv8otolkdsuakijso.jpg"
+                src="https://res.cloudinary.com/dvty6r2wv/image/upload/v1674668101/YelpCamp/zigp2sq1qzqobekp5ki3.jpg"
                 crossorigin>
             <% } %>
         </div>
@@ -32,7 +32,7 @@
 <nav aria-label="Campground Page Navigation">
     <ul class="pagination">
         <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-        <% for (let i = 1; i <= pageCount; i++ ) { %>
+        <% for (let i = 1; i <= pagination.numPages; i++ ) { %>
         <li class="page-item"><a class="page-link" href="/campgrounds/?page=<%= i %>"><%= i %></a></li>
         <% } %>
         <li class="page-item"><a class="page-link" href="#">Next</a></li>
