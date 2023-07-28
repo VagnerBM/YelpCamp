@@ -75,7 +75,6 @@ const sessionConfig = {
         maxAge: 1000 * 60 * 60 * 24 * 7
     }
 }
-
 app.use(session(sessionConfig))
 app.use(flash())
 app.use(helmet());
@@ -142,12 +141,10 @@ app.use((req, res, next) => {
     next();
 })
 
-app.use((req, res, next) => {
-    if (!req.session.isKnown) {
-        req.session.isKnown = true;
-        return res.redirect('/')
-    }
-    next();
+app.get('/fakeUser', async (req, res) => {
+    const user = new User({ email: 'vagnerrr@gmail.com', username: 'vagnerrr' });
+    const newUser = await User.register(user, 'chicken');
+    res.send(newUser)
 })
 
 app.use('/', userRoutes)

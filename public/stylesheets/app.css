@@ -15,14 +15,12 @@
 
 .img-index-page {
     height: 50vh;
-    min-height: 150px;
-    object-fit: contain;
+    min-height: 150px
 }
 
 .img-show-page {
     height: 50vh;
     min-height: 300px;
-    object-fit: contain;
 }
 
 @media (min-width: 768px) {
@@ -34,12 +32,10 @@
     .img-index-page {
         height: 50vh;
         min-height: 300px;
-        object-fit: contain;
     }
 
     .img-show-page {
         height: 75vh;
         min-height: 500px;
-        object-fit: contain;
     }
 }
